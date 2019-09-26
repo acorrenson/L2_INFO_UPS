@@ -14,7 +14,7 @@ Inductive nat : Set :=
 Fixpoint plus (n m:nat) : nat :=
   match n with
   | O   => m
-  | S n => S (plus n m)
+  | S p => S (plus p m)
   end.
 
 
