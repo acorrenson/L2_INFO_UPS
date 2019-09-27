@@ -40,9 +40,14 @@ Fixpoint mod2(n:nat) : nat :=
             | O => S O
             | S q => mod2 q
             end
-
   end.
 
+
+(* --------------------- *)
+(* -Plus is commutative- *)
+(* --------------------- *)
+
+(* Usefull Lemma 1 *)
 Lemma plus_n_o : 
   forall n : nat, plus n O = n.
 Proof.
@@ -52,7 +57,7 @@ Proof.
   rewrite IHn. auto. 
 Qed.
 
-
+(* Usefull Lemma 2 *)
 Lemma plus_n_Sn :
   forall n m : nat, plus n (S m) = S(plus n m).
 Proof.
@@ -63,17 +68,17 @@ Proof.
   tauto. 
 Qed.
 
+(* Final theorem : plus is commutative *)
 Theorem commut_plus : 
   forall n m : nat, plus n m = plus m n.
 Proof.
   intros. 
   induction m. simpl.
-    apply plus_n_o.
-  - 
-    simpl.  
-    rewrite <- IHm.
-    apply plus_n_Sn.
+  apply plus_n_o. simpl.  
+  rewrite <- IHm.
+  apply plus_n_Sn.
 Qed.
+
 
 (* --------------------- *)
 (* ------- TESTS ------- *)
