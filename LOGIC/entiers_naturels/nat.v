@@ -47,36 +47,51 @@ Fixpoint mod2(n:nat) : nat :=
 (* -Plus is commutative- *)
 (* --------------------- *)
 
+
 (* Usefull Lemma 1 *)
 Lemma plus_n_o : 
   forall n : nat, plus n O = n.
 Proof.
   intros. 
-  induction n; auto.
-  simpl. 
-  rewrite IHn. auto. 
+  induction n. 
+  - simpl. reflexivity. 
+  - simpl. rewrite -> IHn. reflexivity. 
 Qed.
 
+
 (* Usefull Lemma 2 *)
-Lemma plus_n_Sn :
+Lemma plus_n_Sm :
   forall n m : nat, plus n (S m) = S(plus n m).
 Proof.
   intros.
-  induction n. simpl. tauto.
-  simpl.  
-  rewrite -> IHn. 
-  tauto. 
+  induction n. 
+  - simpl. reflexivity. 
+  - simpl. rewrite -> IHn. reflexivity.
 Qed.
 
-(* Final theorem : plus is commutative *)
-Theorem commut_plus : 
+
+(* Final Lemma : plus is commutative *)
+Lemma commut_plus : 
   forall n m : nat, plus n m = plus m n.
 Proof.
   intros. 
-  induction m. simpl.
-  apply plus_n_o. simpl.  
-  rewrite <- IHm.
-  apply plus_n_Sn.
+  induction m. 
+  - simpl. rewrite -> plus_n_o. reflexivity. 
+  - simpl. rewrite <- IHm. apply plus_n_Sm.
+Qed.
+
+
+(* --------------------- *)
+(* -Plus is Associative- *)
+(* --------------------- *)
+
+Lemma assoc_plus :
+  forall n p q : nat, plus (plus n p) q = (plus n (plus p q)).
+Proof. 
+  intros. 
+  induction n.
+  - simpl. reflexivity.
+  - simpl. rewrite IHn. reflexivity.
 Qed.
 
 
