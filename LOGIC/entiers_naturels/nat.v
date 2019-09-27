@@ -43,6 +43,37 @@ Fixpoint mod2(n:nat) : nat :=
 
   end.
 
+Lemma plus_n_o : 
+  forall n : nat, plus n O = n.
+Proof.
+  intros. 
+  induction n; auto.
+  simpl. 
+  rewrite IHn. auto. 
+Qed.
+
+
+Lemma plus_n_Sn :
+  forall n m : nat, plus n (S m) = S(plus n m).
+Proof.
+  intros.
+  induction n. simpl. tauto.
+  simpl.  
+  rewrite -> IHn. 
+  tauto. 
+Qed.
+
+Theorem commut_plus : 
+  forall n m : nat, plus n m = plus m n.
+Proof.
+  intros. 
+  induction m. simpl.
+    apply plus_n_o.
+  - 
+    simpl.  
+    rewrite <- IHm.
+    apply plus_n_Sn.
+Qed.
 
 (* --------------------- *)
 (* ------- TESTS ------- *)
