@@ -96,6 +96,47 @@ Qed.
 
 
 (* --------------------- *)
+(* -Mult is commutative- *)
+(* --------------------- *)
+
+
+(* Usefull Lemma 1 *)
+Lemma mult_n_o :
+  forall n : nat, mult n O = O.
+Proof.
+  intros. 
+  induction n.
+  - simpl.  reflexivity. 
+  - simpl. rewrite -> IHn. reflexivity. 
+Qed.
+
+
+(* Usefull Lemma 2 *)
+Lemma mult_n_Sm : 
+  forall n m: nat, mult n (S m) = plus (mult n m) n.
+Proof.
+  intros . 
+  induction n.
+  - simpl. reflexivity. 
+  - simpl. 
+    rewrite assoc_plus. rewrite IHn.
+    rewrite plus_n_Sm. rewrite plus_n_Sm.
+    reflexivity. 
+Qed.
+
+(* Final Lemma : mult is commutative *)
+Lemma commut_mult : 
+  forall n m : nat, mult n m = mult m n.
+Proof.
+  intros . 
+  induction n.
+  - simpl. rewrite mult_n_o. reflexivity. 
+  - simpl. rewrite -> mult_n_Sm. 
+    rewrite -> IHn. rewrite -> commut_plus. reflexivity. 
+Qed.
+
+
+(* --------------------- *)
 (* ------- TESTS ------- *)
 (* --------------------- *)
 
