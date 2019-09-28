@@ -137,6 +137,37 @@ Qed.
 
 
 (* --------------------- *)
+(* - Order relation    - *)
+(* --------------------- *)
+
+(* Less or Equal than *)
+Definition le (n m : nat) := exists p : nat, plus n p = m.
+
+(* Reflexivity *)
+Lemma refl_le : 
+  forall n : nat, le n n.
+Proof.
+  intros .
+  unfold le. 
+  exists O.
+  rewrite -> plus_n_o. reflexivity. 
+Qed.
+
+(* Transitivity *)
+Lemma trans_le:
+  forall a b c : nat, le a b -> le b c -> le a c.
+Proof. 
+  intros . 
+  unfold le. elim H0; elim H. 
+  intros . 
+  exists (plus x x0).
+  rewrite <- assoc_plus . 
+  rewrite -> H1. 
+  rewrite -> H2. reflexivity. 
+Qed.
+
+
+(* --------------------- *)
 (* ------- TESTS ------- *)
 (* --------------------- *)
 
