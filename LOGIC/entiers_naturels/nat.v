@@ -166,6 +166,27 @@ Proof.
   rewrite -> H2. reflexivity. 
 Qed.
 
+Lemma plus_n_m_o :
+  forall n m : nat, plus n m = O -> m = O.
+Proof. 
+  intros.
+  induction n. 
+  - rewrite <- H. simpl. reflexivity. 
+  - discriminate. 
+Qed.
+
+(* Antisymetry *)
+Lemma antisym_le:
+  forall a b : nat, le a b -> le b a -> a = b.
+Proof. 
+  intros . 
+  unfold le in  H, H0. 
+  elim H. 
+  elim H0. 
+  intros . 
+  rewrite <- H1 in H2.
+  rewrite assoc_plus in H2.
+  
 
 (* --------------------- *)
 (* ------- TESTS ------- *)
