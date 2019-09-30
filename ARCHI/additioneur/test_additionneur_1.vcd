@@ -1,0 +1,57 @@
+$date
+  Mon Sep 30 16:44:36 2019
+$end
+$version
+  GHDL v0
+$end
+$timescale
+  1 fs
+$end
+$scope module standard $end
+$upscope $end
+$scope module std_logic_1164 $end
+$upscope $end
+$scope module test_additionneur_1 $end
+$var reg 1 ! input_s $end
+$var reg 1 " input_a $end
+$var reg 1 # input_b $end
+$var reg 1 $ outputs $end
+$var reg 1 % carry $end
+$scope module add_1 $end
+$var reg 1 & input_s $end
+$var reg 1 ' input_a $end
+$var reg 1 ( input_b $end
+$var reg 1 ) outputs $end
+$var reg 1 * carry $end
+$upscope $end
+$upscope $end
+$enddefinitions $end
+#0
+0!
+0"
+0#
+0$
+0%
+0&
+0'
+0(
+0)
+0*
+#5000000
+1#
+1$
+1(
+1)
+#10000000
+1"
+0$
+1%
+1'
+0)
+1*
+#15000000
+1!
+1$
+1&
+1)
+#20000000
