@@ -151,7 +151,7 @@ Proof.
     simpl. rewrite commut_plus. 
     rewrite -> assoc_plus. reflexivity.  
 
-    (* Justification for replace 1 *)
+    (* Justification for replace 3 *)
     * rewrite <- assoc_plus. 
       replace (l*a + l*b + a) with (l*a + a + l*b).
       reflexivity. 
@@ -173,7 +173,7 @@ Proof.
       rewrite -> commut_plus. 
       reflexivity. 
 
-    (* Justification for replace 3 *)
+    (* Justification for replace 1 *)
     * simpl. 
       rewrite -> commut_plus. 
       reflexivity.
