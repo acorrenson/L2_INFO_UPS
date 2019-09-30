@@ -17,6 +17,7 @@ Fixpoint plus (n m:nat) : nat :=
   | S p => S (plus p m)
   end.
 
+Notation "a + b" := (plus a b).
 
 (* --------------------- *)
 (* -- Multiplication --- *)
@@ -28,6 +29,7 @@ Fixpoint mult(n m:nat) : nat :=
   | S n => plus m (mult n m)
   end.
 
+Notation "a * b" := (mult a b).
 
 (* --------------------- *)
 (* --- Modulo 2 -------- *)
@@ -136,6 +138,73 @@ Proof.
 Qed.
 
 
+Lemma mult_distrib_plus :
+  forall l a b : nat, mult l (plus a b) = plus (mult l a) (mult l b).
+Proof. 
+  (*intros . 
+  induction l. 
+  - simpl. reflexivity. 
+  - replace (S l * a) with ((l * a + a)).
+    replace (S l * b) with ((l * b + b)).
+    replace (l*a + a + (l*b + b)) with (l*a + l*b + a + b). 
+    rewrite <- IHl.
+    simpl. rewrite commut_plus. 
+    rewrite -> assoc_plus.
+    reflexivity.  
+    * rewrite <- assoc_plus. 
+      replace (l*a + l*b + a) with (l*a + a + l*b).
+      reflexivity. 
+      replace (l*a + l*b) with (l*b + l*a). 
+      rewrite -> assoc_plus. 
+      replace (a + l*b) with (l*b + a).
+      rewrite <- assoc_plus. 
+      replace (l*a + l*b) with (l*b + l*a). 
+      reflexivity. 
+      rewrite -> commut_plus.       
+      reflexivity. 
+      rewrite -> commut_plus.
+      reflexivity. 
+      rewrite -> commut_plus.
+      reflexivity. 
+    * simpl. 
+      rewrite -> commut_plus. 
+      reflexivity. 
+    * simpl. 
+      rewrite -> commut_plus. 
+      reflexivity.*)
+  intros . 
+  induction l. 
+  - simpl. reflexivity. 
+  - replace (S l * a) with ((l * a + a)).
+    replace (S l * b) with ((l * b + b)).
+    replace (l*a + a + (l*b + b)) with (l*a + l*b + a + b). 
+    rewrite <- IHl.
+    simpl. rewrite commut_plus. 
+    rewrite -> assoc_plus.
+    reflexivity.  
+    * rewrite <- assoc_plus. 
+      replace (l*a + l*b + a) with (l*a + a + l*b).
+      reflexivity. 
+      replace (l*a + l*b) with (l*b + l*a). 
+      rewrite -> assoc_plus. 
+      replace (a + l*b) with (l*b + a).
+      rewrite <- assoc_plus. 
+      replace (l*a + l*b) with (l*b + l*a). 
+      reflexivity. 
+      rewrite -> commut_plus.       
+      reflexivity. 
+      rewrite -> commut_plus.
+      reflexivity. 
+      rewrite -> commut_plus.
+      reflexivity. 
+    * simpl. 
+      rewrite -> commut_plus. 
+      reflexivity. 
+    * simpl. 
+      rewrite -> commut_plus. 
+      reflexivity.
+Qed.
+
 (* --------------------- *)
 (* - Order relation    - *)
 (* --------------------- *)
@@ -175,6 +244,26 @@ Proof.
   - discriminate. 
 Qed.
 
+
+Lemma plus_a_b_a_c : 
+  forall a b c: nat, plus a b = plus a c -> b = c.
+Proof. 
+  intros .  
+  induction a. 
+  - replace (plus O b) with b in H.
+    replace (plus O c) with c in H. 
+    apply H.
+    auto.
+    auto. 
+  - replace (plus (S a) b) with (S (plus a b)) in H. 
+    replace (plus (S a) c) with (S (plus a c)) in H.
+    injection H.
+    auto. 
+    simpl. reflexivity. 
+    simpl. reflexivity. 
+Qed.
+
+
 (* Antisymetry *)
 Lemma antisym_le:
   forall a b : nat, le a b -> le b a -> a = b.
@@ -186,7 +275,7 @@ Proof.
   intros . 
   rewrite <- H1 in H2.
   rewrite assoc_plus in H2.
-  
+  rewrite -> plus_n_m_o in H2. 
 
 (* --------------------- *)
 (* ------- TESTS ------- *)
