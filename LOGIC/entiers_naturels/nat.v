@@ -141,47 +141,17 @@ Qed.
 Lemma mult_distrib_plus :
   forall l a b : nat, mult l (plus a b) = plus (mult l a) (mult l b).
 Proof. 
-  (*intros . 
-  induction l. 
-  - simpl. reflexivity. 
-  - replace (S l * a) with ((l * a + a)).
-    replace (S l * b) with ((l * b + b)).
-    replace (l*a + a + (l*b + b)) with (l*a + l*b + a + b). 
-    rewrite <- IHl.
-    simpl. rewrite commut_plus. 
-    rewrite -> assoc_plus.
-    reflexivity.  
-    * rewrite <- assoc_plus. 
-      replace (l*a + l*b + a) with (l*a + a + l*b).
-      reflexivity. 
-      replace (l*a + l*b) with (l*b + l*a). 
-      rewrite -> assoc_plus. 
-      replace (a + l*b) with (l*b + a).
-      rewrite <- assoc_plus. 
-      replace (l*a + l*b) with (l*b + l*a). 
-      reflexivity. 
-      rewrite -> commut_plus.       
-      reflexivity. 
-      rewrite -> commut_plus.
-      reflexivity. 
-      rewrite -> commut_plus.
-      reflexivity. 
-    * simpl. 
-      rewrite -> commut_plus. 
-      reflexivity. 
-    * simpl. 
-      rewrite -> commut_plus. 
-      reflexivity.*)
   intros . 
   induction l. 
   - simpl. reflexivity. 
-  - replace (S l * a) with ((l * a + a)).
-    replace (S l * b) with ((l * b + b)).
+  - replace (S l * a) with (l * a + a).
+    replace (S l * b) with (l * b + b).
     replace (l*a + a + (l*b + b)) with (l*a + l*b + a + b). 
     rewrite <- IHl.
     simpl. rewrite commut_plus. 
-    rewrite -> assoc_plus.
-    reflexivity.  
+    rewrite -> assoc_plus. reflexivity.  
+
+    (* Justification for replace 1 *)
     * rewrite <- assoc_plus. 
       replace (l*a + l*b + a) with (l*a + a + l*b).
       reflexivity. 
@@ -197,9 +167,13 @@ Proof.
       reflexivity. 
       rewrite -> commut_plus.
       reflexivity. 
+
+    (* Justification for replace 2 *)
     * simpl. 
       rewrite -> commut_plus. 
       reflexivity. 
+
+    (* Justification for replace 3 *)
     * simpl. 
       rewrite -> commut_plus. 
       reflexivity.
