@@ -161,12 +161,12 @@ Proof.
       rewrite <- assoc_plus. 
       replace (l*a + l*b) with (l*b + l*a). 
       reflexivity. 
-      rewrite -> commut_plus.       
-      reflexivity. 
       rewrite -> commut_plus.
-      reflexivity. 
+      reflexivity.
       rewrite -> commut_plus.
-      reflexivity. 
+      reflexivity.
+      rewrite -> commut_plus.
+      reflexivity.
 
     (* Justification for replace 2 *)
     * simpl. 
