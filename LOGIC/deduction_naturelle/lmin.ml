@@ -8,27 +8,19 @@ type form =
   | Impl of form * form
 (** formules de la logique minimale *)
 
+
 (** Notation infixe pour l'implication *)
 let ( **> )  a b  = Impl (a, b)
 
-(** Affichage  *)
-let rec pprint f =
-  match f with
-  | Prop c -> print_char c
-  | Impl (a, b) -> 
-    print_char '(';
-    pprint a;
-    print_string "->";
-    pprint b;
-    print_char ')'
 
-
+(** Erreur d'application de règle de déduction *)
 exception Rule_fail
 
+
 (**
- * Règle de l'axiom 
+ * Règle de l'axiome
  *)
-let axiom h a =
+let axiome h a =
   try List.find ((=) a) h
   with Not_found -> raise Rule_fail
 
@@ -44,6 +36,21 @@ let modus_ponens ctx =
     b
   | _ -> raise Rule_fail
 
+
+(** Affichage  *)
+let rec pprint f =
+  match f with
+  | Prop c -> print_char c
+  | Impl (a, b) -> 
+    print_char '(';
+    pprint a;
+    print_string "->";
+    pprint b;
+    print_char ')'
+
+(** Affichage mutiple *)
+let pprint_set h =
+  List.iter (fun x -> pprint x; print_char ' ') h
 
 let ctx = [(Prop 'a') **> (Prop 'b'); (Prop 'a')]
 let _ =
