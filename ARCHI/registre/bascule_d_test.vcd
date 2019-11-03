@@ -1,0 +1,55 @@
+$date
+  Sun Nov  3 11:39:20 2019
+$end
+$version
+  GHDL v0
+$end
+$timescale
+  1 fs
+$end
+$scope module standard $end
+$upscope $end
+$scope module std_logic_1164 $end
+$upscope $end
+$scope module bascule_d_test $end
+$var reg 1 ! clk $end
+$var reg 1 " d $end
+$var reg 1 # q $end
+$var reg 1 $ qb $end
+$scope module bascule $end
+$var reg 1 % clk $end
+$var reg 1 & d $end
+$var reg 1 ' q $end
+$var reg 1 ( qb $end
+$upscope $end
+$upscope $end
+$enddefinitions $end
+#0
+0!
+1"
+U#
+U$
+0%
+1&
+U'
+U(
+#20000000
+1!
+1#
+0$
+1%
+1'
+0(
+#40000000
+0!
+0"
+0%
+0&
+#60000000
+1!
+0#
+1$
+1%
+0'
+1(
+#80000000

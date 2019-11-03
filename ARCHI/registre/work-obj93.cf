@@ -1,0 +1,6 @@
+v 4
+file . "bascule-d.vhd" "c47938ee0753bff8a44c441f77b5ad6d31838091" "20191103103919.992":
+  entity bascule_d at 4( 93) + 0 on 81;
+  architecture bascule_d_arch of bascule_d at 15( 284) + 0 on 82;
+  entity bascule_d_test at 30( 555) + 0 on 83;
+  architecture bascule_d_test_arch of bascule_d_test at 36( 645) + 0 on 84;
