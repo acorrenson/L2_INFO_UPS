@@ -3,6 +3,7 @@
 
 #include <assert.h>
 #include <stdbool.h>
+#include <stdlib.h>
 
 #define MAX_SIZE 256
 
@@ -10,10 +11,7 @@
  * @brief Stack Structure.
  *
  */
-typedef struct stack_s {
-  int stack_data[MAX_SIZE];
-  int top;
-} stack_t;
+typedef struct stack_s *Stack;
 
 /**
  * @brief Stack constructor stack_create.
@@ -21,7 +19,7 @@ typedef struct stack_s {
  * @semantic default constructor
  *
  */
-void stack_create(stack_t *);
+Stack stack_create();
 
 /**
  * @brief Stack operator stack_push.
@@ -32,7 +30,7 @@ void stack_create(stack_t *);
  *  default constructor
  *
  */
-void stack_push(stack_t *, int);
+Stack stack_push(Stack, int);
 
 /**
  * @brief Stack operator stack_create.
@@ -42,7 +40,7 @@ void stack_push(stack_t *, int);
  *  ¬is_empty(push(s))
  *
  */
-bool stack_is_empty(stack_t *);
+bool stack_is_empty(Stack);
 
 /**
  * @brief Stack operator stack_pop
@@ -53,7 +51,7 @@ bool stack_is_empty(stack_t *);
  *  pop(push(s, x)) = s
  *
  */
-void stack_pop(stack_t *);
+Stack stack_pop();
 
 /**
  * @brief Stack operator stack_top
@@ -64,6 +62,6 @@ void stack_pop(stack_t *);
  *  top(push(s, x)) = x
  *
  */
-int stack_top(stack_t *);
+int stack_top(Stack);
 
 #endif
