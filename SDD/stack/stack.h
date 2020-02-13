@@ -55,4 +55,15 @@ bool stack_is_empty(stack_t *);
  */
 void stack_pop(stack_t *);
 
+/**
+ * @brief Stack operator stack_top
+ *
+ * @pre
+ *  ¬is_empty(s)
+ * @semantic
+ *  top(push(s, x)) = x
+ *
+ */
+int stack_top(stack_t *);
+
 #endif
