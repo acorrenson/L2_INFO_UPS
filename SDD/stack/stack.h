@@ -5,13 +5,13 @@
 #include <stdbool.h>
 #include <stdlib.h>
 
-#define MAX_SIZE 256
+#define STACK_SIZE 256
 
 /**
  * @brief Stack Structure.
  *
  */
-typedef struct stack_s *Stack;
+typedef struct s_stack *Stack;
 
 /**
  * @brief Stack constructor stack_create.
@@ -25,7 +25,7 @@ Stack stack_create();
  * @brief Stack operator stack_push.
  *
  * @pre
- *  s.top < MAX_SIZE - 1
+ *  s.top < STACK_SIZE - 1
  * @semantic
  *  default constructor
  *
