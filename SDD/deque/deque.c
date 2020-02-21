@@ -48,6 +48,22 @@ Deque_t deque_pop_back(Deque_t d) {
   return d;
 }
 
+Deque_t deque_insert_at(Deque_t d, int pos, int v) {
+  int c = 0;
+  Elem_t e = malloc(sizeof(struct elem_s));
+  e->value = v;
+  Elem_t ptr = d->sentinelle;
+  while (c < pos) {
+    ptr = ptr->next;
+    c++;
+  }
+  e->next = ptr->next;
+  ptr->next = e;
+  e->prev = ptr;
+  ++(d->size);
+  return d;
+}
+
 Deque_t deque_map(Deque_t d, SimpleFunctor f) {
   for (Elem_t e = d->sentinelle->next; e != d->sentinelle; e = e->next) {
     e->value = f(e->value);
@@ -59,39 +75,4 @@ void deque_reduce(const Deque_t d, ReduceFunctor f, void *acc) {
   for (Elem_t e = d->sentinelle->next; e != d->sentinelle; e = e->next) {
     f(e->value, acc);
   }
-}
-
-int print_elem(int v) {
-  printf("%d\n", v);
-  return v;
-}
-
-void sum(int v, void *acc) {
-  int *s = (int *)acc;
-  *s = *s + v;
-}
-
-void prod(int v, void *acc) {
-  int *p = (int *)acc;
-  *p = *p * v;
-}
-
-int main(int argc, char const *argv[]) {
-  int s = 0;
-  int p = 1;
-  Deque_t d = deque_create();
-  deque_push_back(d, 1);
-  deque_push_back(d, 2);
-  deque_push_back(d, 3);
-  deque_push_back(d, 4);
-
-  deque_map(d, print_elem);
-
-  deque_reduce(d, sum, &s);
-  printf("sum : %d\n", s);
-
-  deque_reduce(d, prod, &p);
-  printf("prod : %d\n", p);
-
-  return 0;
 }

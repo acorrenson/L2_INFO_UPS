@@ -45,7 +45,7 @@ Deque_t deque_pop_back(Deque_t);
  *
  * @return Deque_t
  */
-Deque_t deque_insert_at(Deque_t);
+Deque_t deque_insert_at(Deque_t, int, int);
 
 typedef int (*SimpleFunctor)(int);
 typedef void (*ReduceFunctor)(int, void *);
